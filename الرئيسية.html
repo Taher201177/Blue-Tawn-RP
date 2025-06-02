@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>سيرفر Blue Town RP</title>
+  
+  <!-- خط جميل من Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    
+    .login-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #00bfff;
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00bfff;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+ // يمكن إضافة إشعارات تلقائية (مثلاً ترحيب)
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      showNotification('مرحباً بك في سيرفر Blue Town RP!');
+    }, 1500);
+  });
+.login-icon:hover {
+  background-color: #00ffff;
+  transform: scale(1.1);
+}
+
+    /* خلفية متحركة */
+body {
+  margin: 0;
+  font-family: 'Tajawal', sans-serif;
+  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+@keyframes moveBg {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(50px, 50px); }
+  100% { transform: translate(0, 0); }
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* زر العودة للأعلى */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  background-color: #00bfff;
+  color: #000;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 12px #00bfffaa;
+  display: none;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+#scrollTopBtn:hover {
+  background-color: #00ffff;
+}
+
+/* تأثير عند تمرير العناصر */
+section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* تأثير نبض على أزرار الشراء */
+.store-item button {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0,191,255, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(0,191,255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,191,255, 0); }
+}
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Tajawal', sans-serif;
+      background: url('https://images.unsplash.com/photo-1619682406215-b9b832ed2d44?auto=format&fit=crop&w=1740&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    header {
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      padding: 30px 10px;
+      text-align: center;
+      font-size: 32px;
+      font-weight: 900;
+      color: #00bfff;
+      box-shadow: 0 0 10px #00bfff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
+      }
+      to {
+        text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff;
+      }
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 18px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00bfff;
+      border-bottom: 2px solid #00bfff;
+    }
+
+    section {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.6);
+      margin-top: 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    h2 {
+      color: #00bfff;
+      border-bottom: 2px solid #00bfff;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .store-item {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid #00bfff55;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 12px;
+      transition: transform 0.3s;
+    }
+
+    .store-item:hover {
+      transform: scale(1.03);
+    }
+
+    .store-item button {
+      background-color: #00bfff;
+      color: #000;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    form .form-group {
+      margin-bottom: 15px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #222;
+      color: #fff;
+      margin-top: 5px;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    button.submit, button.login-btn {
+      background-color: #27ae60;
+      padding: 10px 16px;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    #formMsg {
+      color: #00ff88;
+      margin-top: 15px;
+    }
+
+    /* Login Modal */
+    #loginModal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .login-box {
+      background: #111;
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 0 20px #00bfff;
+    }
+
+    .login-box input {
+      background: #222;
+      margin-bottom: 10px;
+    }
+
+    .close-btn {
+      float: left;
+      cursor: pointer;
+      color: red;
+      font-weight: bold;
+    }
+.login-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #00bfff;
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00bfff;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.login-icon:hover {
+  background-color: #00ffff;
+  transform: scale(1.1);
+}
+
+    @media(max-width: 768px) {
+      header {
+        font-size: 24px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        padding: 10px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="clickSound" src="https://www.myinstants.com/media/sounds/button-click.mp3" preload="auto"></audio>
+
+ <header>
+  سيرفر Blue Town RP
+  <button class="login-icon" onclick="openLogin()" title="تسجيل الدخول">👤</button>
+</header>
+
+
+ <nav>
+  <a href="#home" onclick="playClick()">الرئيسية</a>
+  <a href="rules.html" onclick="playClick()">القوانين</a> <!-- تم التعديل هنا -->
+  <a href="التقديم.html" onclick="playClick()">التقديم</a>
+  <a href="المتجر.html" onclick="playClick()">المتجر</a>
+   <a href="جراند.html" onclick="playClick()">جراند</a>
+</nav>
+
+
+  <section id="home">
+    <h2>مرحبا بك في Blue Town RP</h2>
+    <p>سيرفر واقعي مبني على الاحترام والتفاعل الممتع، نوفر لك تجربة فريدة داخل عالم RP، نظام اقتصاد، وظائف، عصابات، والمزيد.</p>
+  </section>
+
+  <section id="store">
+    <h2>المتجر</h2>
+    <div class="store-item">
+      <h3>باقة VIP شهرية</h3>
+      <p>امتيازات خاصة، سيارات فاخرة، صلاحيات حصرية.</p>
+      <button onclick="playClick(); alert('✅ تم طلب الباقة')">شراء</button>
+    </div>
+    <div class="store-item">
+      <h3>5000 عملة ذهبية</h3>
+      <p>لشراء الأسلحة، البيوت، والتعديلات.</p>
+      <button onclick="playClick(); alert('✅ تم شراء العملات')">شراء</button>
+    </div>
+     <a class="back" href="جراند.html">🔙 العودة للرئيسية</a>
+  </section>
+
+  <!-- تسجيل الدخول -->
+  <div id="loginModal">
+    <div class="login-box">
+      <span class="close-btn" onclick="closeLogin()">✖</span>
+      <h2>تسجيل الدخول</h2>
+      <input type="text" placeholder="اسم المستخدم">
+      <input type="password" placeholder="كلمة المرور">
+      <button class="login-btn" onclick="alert('تم تسجيل الدخول (وهميًا)')">دخول</button>
+    </div>
+  </div>
+
+  <script>
+    function submitForm() {
+      document.getElementById("formMsg").innerText = "✅ تم إرسال طلبك بنجاح. سيتم التواصل معك خلال 24 ساعة.";
+      playClick();
+    }
+
+    function playClick() {
+      document.getElementById("clickSound").play();
+    }
+
+    function openLogin() {
+      document.getElementById("loginModal").style.display = "flex";
+      playClick();
+    }
+
+    function closeLogin() {
+      document.getElementById("loginModal").style.display = "none";
+      playClick();
+    }
+    // زر العودة للأعلى
+window.onscroll = function () {
+  const btn = document.getElementById("scrollTopBtn");
+  btn.style.display = window.scrollY > 300 ? "block" : "none";
+
+  document.querySelectorAll("section").forEach((sec) => {
+    const rect = sec.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      sec.classList.add("visible");
+    }
+  });
+};
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+  </script>
+<button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>سيرفر Blue Town RP</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      padding: 30px 10px;
+      text-align: center;
+      font-size: 32px;
+      font-weight: 900;
+      color: #00bfff;
+      box-shadow: 0 0 10px #00bfff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
+      }
+      to {
+        text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff;
+      }
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 18px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00bfff;
+      border-bottom: 2px solid #00bfff;
+    }
+
+    section {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.6);
+      margin-top: 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    h2 {
+      color: #00bfff;
+      border-bottom: 2px solid #00bfff;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .store-item {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid #00bfff55;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 12px;
+      transition: transform 0.3s;
+    }
+
+    .store-item:hover {
+      transform: scale(1.03);
+    }
+
+    .store-item button {
+      background-color: #00bfff;
+      color: #000;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    form .form-group {
+      margin-bottom: 15px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #222;
+      color: #fff;
+      margin-top: 5px;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    button.submit, button.login-btn {
+      background-color: #27ae60;
+      padding: 10px 16px;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    #formMsg {
+      color: #00ff88;
+      margin-top: 15px;
+    }
+
+    #loginModal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .login-box {
+      background: #111;
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 0 20px #00bfff;
+    }
